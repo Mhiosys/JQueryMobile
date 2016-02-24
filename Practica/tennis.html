@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />		
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Jquery Mobile App</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css/themes/mija-theme.css" />
+    <link rel="stylesheet" href="jquery.mobile/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile.structure-1.4.5.min.css" /> 
+	<script src="jquery/jquery-1.12.0.min.js"></script> 
+    
+    <script type="text/javascript">
+		var jugador1="";
+		var jugador2 = "";
+		var puntos = [0,0];
+		var juegos = [0,0];
+		var sets = [0,0];
+		//
+		var saca = 0;
+		var ganador = "";		
+		$(document).bind("pageinit", function(){
+			$("#s1,#s2").on("click", function(){
+				$.mobile.changePage($("#pagina3"), "none");
+			});
+			
+			$("#pf2").bind("click", function(event){	
+				limpiaBotones();						
+				sumaPunto(false);
+			});	
+						
+			$("#ps1,#ps2").bind("click", function(event){
+				limpiaBotones();
+				sumaPunto(true);
+			});
+
+			$("#pf1").bind("click", function(event){
+				$("#s1,#ps1,#pf1").attr("disabled","disabled");
+				$("#s2,#ps2,#pf2").removeAttr("disabled").checkboxradio("refresh");
+				sumaPunto(true);
+			});			
+			
+			$("#pagina2").on("pageinit", function(event){
+				event.stopPropagation();
+				jugador1 = $("#jugador1").val();
+				jugador2 = $("#jugador2").val();
+				if(jugador1=="") jugador1 = "Jugador1";
+				if(jugador2=="") jugador2 = "Jugador2";
+				$("#jugador11").html("<p><b>"+jugador1 + "</b></p>");
+				$("#jugador21").html("<p><b>"+jugador2 + "</b></p>");
+				$("#s2,#ps2,#pf2").attr("disabled","disabled");
+			});
+			
+			$("#pagina3").on("pageinit", function(event){
+				event.stopPropagation();		
+				$("#jugador1").val()		
+			});
+		});
+		
+		function limpiaBotones(){
+			$("#s2,#ps2,#pf2").attr("disabled","disabled");
+			$("#s1,#ps1,#pf1").removeAttr("disabled").checkboxradio("refresh");
+			$("#s1,#ps1,#pf1,#s2,#ps2,#pf2").removeAttr("checked").checkboxradio("refresh");
+		}
+		
+		function sumaPunto(favor){
+			var numJugador;
+			if(favor===true){
+				numJugador = saca;
+			}else{
+				numJugador = (saca==0)? 1: 0;
+			}
+			puntos[numJugador]+=15;
+			if(puntos[numJugador]==45)	puntos[numJugador]=40;
+			if(puntos[numJugador]>40){
+				puntos[0]=0;
+				puntos[1]=0;
+				juegos[numJugador]++;
+				saca = (saca==0)? 1: 0;
+			}
+			actualizaMarcador();
+		}
+		
+		function actualizaMarcador(){
+			$("#puntos11").text(puntos[0]);
+			$("#puntos21").text(puntos[1]);
+			
+			$("#juegos11").text(juegos[0]);
+			$("#juegos21").text(juegos[1]);
+			
+			if(saca==0){
+				$("#marca11").attr("src","img/bolaroja.png");
+				$("#marca21").attr("src","");				
+			}else{
+				$("#marca21").attr("src","img/bolaroja.png");
+				$("#marca11").attr("src","");				
+			}
+					
+		}
+    </script>
+    
+	<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script> 
+	<style type="text/css">
+    #puntos11, #puntos21, #juegos11, #juegos21, #set11, #set21,
+    #puntos12, #puntos22, #juegos12, #juegos22, #set12, #set22
+    {
+        float: left;
+        background-color: #39628e;
+        color: white;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        margin: 0 10px;
+        padding: 12px 6px 6px 6px;
+    }
+    
+    #jugador1, #jugador2{
+        width: 250px;
+    }
+    #ganador{
+        font-size:35px;
+        text-align: center;
+        color: orange;
+    }
+    </style>
+</head>
+<body>
+	<div data-role="page" id="pagina1">
+    	<div data-role="header">
+        	<h1>Tres set sin ventaja</h1>
+        </div>
+        <div data-role="content">
+        	<form>
+            	<label for="nombre1">Jugador 1</label>
+                <input type="text" name="nombre1" id="jugador1" />
+                <p>VS</p>
+                <label for="nombre2">Jugador 2</label>
+                <input type="text" name="nombre2" id="jugador2" />
+                <p>&nbsp;</p>
+                <a href="#pagina2" data-role="button">Inicia Juego</a>
+            </form>
+        </div>
+        <div data-role="footer"><h4>Todos los derechos reservados</h4></div>
+    </div>
+    
+	<div data-role="page" id="pagina2">
+    	<div data-role="header">
+        	<h1>Saque</h1>
+        </div>
+        <div data-role="content">
+        	<table>
+            	<tr>
+                	<td>
+                    	<img src="img/bolaroja.png" id="marca11" />
+                    </td>
+                    <td><div id="jugador11"><p>Jugador 1</p></div></td>
+                    <td><div id="puntos11"><p>0</p></div></td>
+                    <td><div id="juegos11"><p>0</p></div></td>
+                    <td><div id="set11"><p>0</p></div></td>
+                </tr>
+            	<tr>
+                	<td>
+                    	<img src="" id="marca21" />
+                    </td>
+                    <td><div id="jugador21"><p>Jugador 2</p></div></td>
+                    <td><div id="puntos21"><p>0</p></div></td>
+                    <td><div id="juegos21"><p>0</p></div></td>
+                    <td><div id="set21"><p>0</p></div></td>
+                </tr>                
+            </table>
+            <p>&nbsp;</p>
+            <form>
+            	<fieldset data-role="controlgroup">
+                	<button id="saque1">Primer Saque</button>
+                    
+                    <input type="radio" name="saque1" id="s1" value="1" />
+                    <label for="s1">Saque</label>
+                    
+                    <input type="radio" name="saque1" id="ps1" value="2" />
+                    <label for="ps1">Ace</label>
+                    
+                    <input type="radio" name="saque1" id="pf1" value="3" />
+                    <label for="pf1">Falta</label>
+                </fieldset>
+                
+            	<fieldset data-role="controlgroup">
+                	<button id="saque2">Segundo Saque</button>
+                    
+                    <input type="radio" name="saque1" id="s2" value="4" />
+                    <label for="s2">Saque</label>
+                    
+                    <input type="radio" name="saque1" id="ps2" value="5" />
+                    <label for="ps2">Ace</label>
+                    
+                    <input type="radio" name="saque1" id="pf2" value="6" />
+                    <label for="pf2">Doble falta</label>
+                </fieldset>                
+            </form>
+        </div>
+        <div data-role="footer"><h4>Todos los derechos reservados</h4></div>
+    </div>
+    
+	<div data-role="page" id="pagina3">
+    	<div data-role="header">
+        	<h1>Juego</h1>
+        </div>
+        <div data-role="content">
+        	<table>
+            	<tr>
+                	<td>
+                    	<img src="img/bolaroja.png" id="marca12" />
+                    </td>
+                    <td><div id="jugador12"><p>Jugador 1</p></div></td>
+                    <td><div id="puntos12"><p>0</p></div></td>
+                    <td><div id="juegos12"><p>0</p></div></td>
+                    <td><div id="set12"><p>0</p></div></td>
+                </tr>
+            	<tr>
+                	<td>
+                    	<img src="" id="marca22" />
+                    </td>
+                    <td><div id="jugador22"><p>Jugador 2</p></div></td>
+                    <td><div id="puntos22"><p>0</p></div></td>
+                    <td><div id="juegos22"><p>0</p></div></td>
+                    <td><div id="set22"><p>0</p></div></td>
+                </tr>                
+            </table>
+            <p>&nbsp;</p>
+            <form>
+            	<fieldset data-role="controlgroup">
+                	<button id="winner1">Primer Jugador</button>
+                    
+                    <input type="radio" name="game1" id="win1" value="1" />
+                    <label for="win1">Tiro ganador</label>
+                    
+                    <input type="radio" name="game1" id="ef1" value="2" />
+                    <label for="ef1">Error forzado</label>
+                    
+                    <input type="radio" name="game1" id="enf1" value="3" />
+                    <label for="enf1">Error no forzado</label>
+                </fieldset>
+                
+            	<fieldset data-role="controlgroup">
+                	<button id="winner2">Segundo Jugador</button>
+                    
+                    <input type="radio" name="game2" id="win2" value="4" />
+                    <label for="win2">Tiro ganador</label>
+                    
+                    <input type="radio" name="game2" id="ef2" value="5" />
+                    <label for="ef2">Error forzado</label>
+                    
+                    <input type="radio" name="game2" id="enf2" value="6" />
+                    <label for="enf2">Error no forzado</label>
+                </fieldset>                
+            </form>        
+        </div>
+        <div data-role="footer"><h4>Todos los derechos reservados</h4></div>
+    </div>
+    
+	<div data-role="page" id="pagina4">
+    	<div data-role="header">
+        	<h1>Resultado</h1>
+        </div>
+        <div data-role="content">
+        	<div id="ganador"></div>
+            <a href="#pagina1" data-role="button">Regresar</a>
+        </div>
+        <div data-role="footer"><h4>Todos los derechos reservados</h4></div>
+    </div> 
+
+</body>
+</html>

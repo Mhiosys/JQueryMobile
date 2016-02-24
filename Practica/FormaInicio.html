@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />		
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Jquery Mobile App</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css/themes/a.css" />
+    <link rel="stylesheet" href="jquery.mobile/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" /> 
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> 
+	<style type="text/css">
+
+		.ui-icon-custom{
+			background-image: url(img/logo.png);
+			background-size: 70%;
+			background-position: 3px 3px;
+		}
+
+		h2{
+			color: orange;
+		}
+
+		p{
+			color: blue;
+		}
+
+	</style>
+</head>
+<body>
+	<div data-role="page" data-theme="a">
+		<div data-role="header">Por favor llenar el formulario</div>
+		<div data-role="content">			
+			<form action="envia.php" method="post" data-ajax="false">
+				<label>Escriba su nombre</label>
+				<input type="text" id="nombre" name="nombre" />
+				<label>Escriba su Email</label>
+				<input type="email" id="email" name="email" />
+				<label>Comentario</label>
+				<textarea></textarea>
+				<label>Edad</label>
+				<input type="range" min="1" max="120" id="edad" name="edad" value="18" />
+                <fieldset data-role="controlgroup">
+                	<legend>Selecciona el idioma que sabes</legend>
+                    <input type="checkbox" name="espanol" id="espanol" /> <label for="espanol">Español</label>
+                    <input type="checkbox" name="ingles" id="ingles" /> <label for="ingles">Ingles</label>
+                    <input type="checkbox" name="frances" id="frances" /> <label for="frances">Frances</label>
+                </fieldset>
+                <label for="subscribe">Quieres recibir nuestro boletín?</label>
+                <select name="subscribe" id="subscribe" data-role="slider">
+                	<option>Si</option>
+                	<option>No</option>                    
+                </select>
+                <label for="gps">Estado de tu gps</label>
+                <select name="gps" id="gps" data-role="slider">
+                	<option>On</option>
+                	<option>Off</option>                    
+                </select>
+                <label for="musica">Gustos musicales</label>
+                <select name="musica" id="musica" multiple data-native-menu="false" >
+                	<option data-placeholder="true">Selecciona tu música</option>
+                	<option value="1">Cristiana</option>
+                    <option value="2">Clasica</option>
+                    <option value="3">Romántica</option>
+                </select>
+                
+                <label for="pais">Pa&iacute;s origen</label>
+                <select name="pais" id="pais" multiple data-native-menu="false" >
+                	<option data-placeholder="true">Selecciona tu pais</option>
+                	<optgroup label="America del norte">
+                    	<option value="1">USA</option>
+                        <option value="2">Canada</option>
+                    </optgroup>
+                    <optgroup label="America del Sur">
+                    	<option value="3">Perú</option>
+                        <option value="4">Brazil</option>
+                    </optgroup>
+                    <optgroup label="America del Centro">
+                    	<option value="5">Jamaica</option>
+                        <option value="6">Panamá</option>
+                    </optgroup>
+                </select>
+                <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup">
+                    <legend>Estado Civil</legend>
+                    <input type="radio" name="estadoCivil" id="soltero" value="1" />
+                    <label for="soltero">Soltero</label>
+                    <input type="radio" name="estadoCivil" id="Casado" value="2" />
+                    <label for="Casado">Casado</label>
+                    <input type="radio" name="estadoCivil" id="Viudo" value="3" />
+                    <label for="Viudo">Viudo</label>
+                    <input type="radio" name="estadoCivil" id="Divorciado" value="4" />
+                    <label for="Divorciado">Divorciado</label>
+                  </fieldset>
+                </div>
+                
+                
+			</form>
+		</div>
+		<div data-role="footer">Todos los derechos reservados</div>
+	</div>
+
+</body>
+</html>

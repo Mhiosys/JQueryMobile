@@ -10,17 +10,28 @@
 	<script src="jquery/jquery-1.12.0.min.js"></script>
 	<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>	
 	<style type="text/css">
-		img{
-			float: left;
-			margin: 10px;
+
+		.ui-icon-custom{
+			background-image: url(img/logo.png);
+			background-size: 70%;
+			background-position: 3px 3px;
 		}
+
+		h2{
+			color: orange;
+		}
+
+		p{
+			color: blue;
+		}
+
 	</style>
 </head>
 <body>
 
 <div data-role="page" id="primera">
 	<div data-role="header" data-position="fixed">
-		<h1>Hola, LOL</h1>
+		<h1>Hola, Mundo</h1>
 		<nav data-role="navbar">
 			<ul>
 				<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="arrow-l">Izquierda</a></li>
@@ -31,7 +42,67 @@
 		</nav>
 	</div>
 	<div data-role="content">
+		<div data-role="collapsible-set">
+			<h1>ListView</h1>
+			<div data-role="collapsible">
+			<h2>Redes</h2>
+			<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Filtra la red" data-theme="a" data-divider-theme="d" data-count-theme="b" data-autodividers="false" data-filter-reveal="false" >
+				<li data-icon="info">
+					<a href="#"><img src="img/facebook.png"  />
+						<h2>Facebook</h2>
+						<p>Primera Red Social en el mundo</p>
+						<span class="ui-li-count">2000</span>					
+					</a>
+					<a href="https://www.facebook.com" data-rel="popup" data-position-to="windows" data-transition="flip">wiki</a>
+					<p class="ui-li-aside">6:30 pm</p>
+				</li>
 
+				<li data-icon="info">
+					<a href="#"><img src="img/twitter.png"  />
+						<h2>Twiter</h2>
+						<p>Segunda Red Social en el mundo</p>
+						<span class="ui-li-count">1000</span>
+					</a>
+					<a href="https://www.twitter.com" data-rel="popup" data-position-to="windows" data-transition="slide">wiki</a>
+				</li>
+
+				<li data-icon="info">
+					<a href="#"><img src="img/skype.png"  />
+						<h2>Skype</h2>
+						<p>Cuarta Red Social en el mundo</p>
+						<span class="ui-li-count">500</span>
+					</a>
+					<a href="https://www.skype.com" data-rel="popup" data-position-to="windows" data-transition="pop">wiki</a>
+				</li>
+
+				<li data-icon="info">
+					<a href="#"><img src="img/youtube.png"  />
+						<h2>Youtube</h2>
+						<p>Tercera Red Social en el mundo</p>
+						<span class="ui-li-count">750</span>
+					</a>
+					<a href="https://www.youtube.com" data-rel="popup" data-position-to="windows" data-transition="slidedown">wiki</a>
+				</li>	
+			</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Meses</h2>
+			<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Filtra la red" data-theme="a" data-divider-theme="d" data-count-theme="b" data-autodividers="false" data-filter-reveal="false" >
+				<li><a href="#">Mayo<span class="ui-li-count">31</span></a></li>
+				<li><a href="#">Junio<span class="ui-li-count">20</span></a></li>
+				<li><a href="#">Julio<span class="ui-li-count">15</span></a></li>
+				<li data-role="listdivider">Segundo Ciclo</li>
+				<li><a href="#">Setiembre</a></li>
+				<li><a href="#">Octubre</a></li>
+				<li><a href="#">Noviembre</a></li>
+				<li><a href="#">Diciembre</a></li>
+			</ul>
+			</div>
+		</div>			
+	<h1>Botones Básicos</h1>
+	<button>primero</button>
+	<input type="button" value="segundo" />
+	<a href="#" data-role="button">Tercero</a>
 	<h1>Jurado declaró inadmisible la candidatura de Julio Guzmán</h1>
 	<p>JEE Lima Centro 1 presentó observaciones a documentos de Todos por el Perú para inscribir plancha. Tienen 2 días para subsanar</p>
 	<img src="http://cde.3.elcomercio.pe/ima/0/1/3/1/8/1318440/base_image.jpg" width="100px" height="100px">
@@ -69,8 +140,15 @@
 		<p>Esto es una prueba 2</p>
 		<p><a href="#primera">Ir Primera P&aacute;gina</a></p>
 	</div>
-	<div data-role="footer">
-		<p>Esto es un pie de p&aacute;gina 2</p>
+	<div data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#" data-icon="plus">Añadir</a></li>
+				<li><a href="#" data-icon="minus">Borrar</a></li>
+				<li><a href="#" data-icon="check">Verificar</a></li>
+				<li><a href="#" data-icon="grid">Consultar</a></li>
+			</ul>
+		</nav>
 	</div>
 </div>
 
